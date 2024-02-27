@@ -12,17 +12,33 @@
 # 4
 # Dãy con đó là 1, 2, 4, 6 hoặc 1 2 5 6
 
-n= int(input())
-nums= list(map(int, input().strip().split(" ")))
+# n= int(input())
+# nums= list(map(int, input().strip().split(" ")))
+# dp = [0] * n
+# dp[0]=1
+# for i in range(1,n):
+#     x=0
+#     for j in range(i):
+#         if (nums[j]<nums[i]):
+#             if dp[j]>x:
+#                 x = dp[j]
+#     dp[i] = x + 1
+# print(max(dp))
+
+import bisect
+
+n = int(input())
+nums = list(map(int, input().strip().split()))
+
 dp = [0] * n
-dp[0]=1
-for i in range(1,n):
-    x=0
-    for j in range(i):
-        if (nums[j]<nums[i]):
-            if dp[j]>x:
-                x = dp[j]
-    dp[i] = x + 1
-print(max(dp))
+dp[0] = 1
+max_length = 0
+
+for num in nums:
+    idx = bisect.bisect_left(dp, num)
+    dp[idx] = num
+    max_length = max(max_length, idx)
+
+print(max_length)
 
             
