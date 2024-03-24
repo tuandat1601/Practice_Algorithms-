@@ -32,5 +32,16 @@ def gcd(a:int, b:int)->int:
             b = b - a
     return a
 def gcdOfStrings( str1: str, str2: str) -> str:
-    return  str1[:gcd(len(str1),len(str2))] if str1+str2==str2+str1 else ""
-print(gcdOfStrings("ABCABC","ABC"))
+    len1 = len(str1)
+    len2 = len(str2)
+    if str1+str2==str2+str1:
+        
+        if len1%len2==0:
+            return str2
+        elif len2%len1==0:
+            return str2
+        else:
+            
+            return str1[:gcd(len1,len2)]
+    return  ""
+print(gcdOfStrings("ABABAB","ABAB"))
